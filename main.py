@@ -42,8 +42,8 @@ try:
     while 1:
         for pin in pins:
             print(pin, GPIO.input(pin))
-            client.publish('IIOT/' + serial + '/GPIO'+str(pin), payload=i, qos=0, retain=False)
-            print(f"send {i} to raspberry/topic")
+            client.publish('IIOT/' + serial + '/GPIO'+str(pin), payload=GPIO.input(pin), qos=0, retain=False)
+            print(f"send GPIO PIN {pin} {GPIO.input(pin)} to mqtt")
 
             time.sleep(0.075)
         client.loop_forever()
